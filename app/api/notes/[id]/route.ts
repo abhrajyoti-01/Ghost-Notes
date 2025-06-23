@@ -1,23 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 import bcrypt from "bcryptjs"
-
-// Import the same notes Map from the main route
-interface StoredNote {
-  content: string
-  createdAt: Date
-  expiresAt: Date
-  passwordHash?: string
-  preview?: string
-}
-
-const notes = new Map<string, StoredNote>()
-
-// Statistics tracking
-const stats = {
-  totalNotes: 0,
-  totalViews: 0,
-  expiredNotes: 0,
-}
+import { notes, stats } from "@/lib/storage"
 
 interface RouteParams {
   params: Promise<{ id: string }>
